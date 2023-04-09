@@ -13,40 +13,43 @@
                                     alt="Instagram">
                             </div><!-- Header end -->
                             <div class="form-wrap">
-                                <form class="form">
+                                <form class="form" [formGroup]="signupForm" (ngSubmit)="signUp()">
 
                                     <div class="input-box">
-                                        <input type="text" aria-describedby="" placeholder="Mobile Number"
-                                            aria-required="true" maxlength="30" autocapitalize="off" autocorrect="off"
-                                            name="Mobile Number" value="" required>
-                                    </div>
-
-                                    <div class="input-box">
-                                        <input type="text" aria-describedby="" placeholder="Email" aria-required="true"
-                                            maxlength="30" autocapitalize="off" autocorrect="off" name="Email" value=""
+                                        <input type="text" aria-describedby="" formControlName="mobile"
+                                            placeholder="Mobile Number" aria-required="true" maxlength="30"
+                                            autocapitalize="off" autocorrect="off" name="Mobile Number" value=""
                                             required>
                                     </div>
 
                                     <div class="input-box">
-                                        <input type="text" aria-describedby="" placeholder="Full Name"
-                                            aria-required="true" maxlength="30" autocapitalize="off" autocorrect="off"
-                                            name="Full Name" value="" required>
+                                        <input type="text" aria-describedby="" formControlName="email"
+                                            placeholder="Email" aria-required="true" maxlength="30" autocapitalize="off"
+                                            autocorrect="off" name="Email" value="" required>
                                     </div>
 
                                     <div class="input-box">
-                                        <input type="text" aria-describedby="" placeholder="Username"
-                                            aria-required="true" maxlength="30" autocapitalize="off" autocorrect="off"
-                                            name="username" value="" required autocomplete="off">
+                                        <input type="text" aria-describedby="" formControlName="fullname"
+                                            placeholder="Full Name" aria-required="true" maxlength="30"
+                                            autocapitalize="off" autocorrect="off" name="Full Name" value="" required>
                                     </div>
 
                                     <div class="input-box">
-                                        <input type="password" placeholder="Password" aria-describedby="" maxlength="30"
-                                            aria-required="true" autocapitalize="off" autocomplete="new-password"
-                                            autocorrect="off" required>
+                                        <input type="text" aria-describedby="" formControlName="username"
+                                            placeholder="Username" aria-required="true" maxlength="30"
+                                            autocapitalize="off" autocorrect="off" name="username" value="" required
+                                            autocomplete="off">
+                                    </div>
+
+                                    <div class="input-box">
+                                        <input type="password" placeholder="Password" aria-describedby=""
+                                            formControlName="password" maxlength="30" aria-required="true"
+                                            autocapitalize="off" autocomplete="new-password" autocorrect="off" required>
                                     </div>
 
                                     <span class="button-box">
-                                        <button class="btn" type="submit" name="submit">Sign up</button>
+                                        <button [disabled]="signupForm.invalid" class="btn" type="submit"
+                                            name="submit">Sign up</button>
                                     </span>
 
                                     <!-- <a class="forgot" href="">Forgot password?</a> -->

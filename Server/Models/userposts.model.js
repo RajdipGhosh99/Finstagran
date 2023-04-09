@@ -4,7 +4,7 @@ const userpostSchema = new mongoose.Schema({
     user_id: {
         trim: true,
         required: true,
-        type: String,
+        type: new mongoose.Types.ObjectId,
     },
     title: {
         trim: true,

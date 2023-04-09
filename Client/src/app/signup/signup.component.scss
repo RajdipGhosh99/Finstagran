@@ -483,3 +483,8 @@ span.language {
     }
 
 }
+
+button[disabled] {
+    background-color: #a2d5ff;
+    cursor: not-allowed;
+}

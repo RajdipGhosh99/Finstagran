@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DbService } from '../General/db/db.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   public passShow: boolean = false
 
 
-  constructor(private dbService: DbService, private fb: FormBuilder) {
+  constructor(private dbService: DbService, private fb: FormBuilder, private router: Router) {
 
   }
 
@@ -34,6 +35,9 @@ export class LoginComponent implements OnInit {
         if (d?.data?.length > 0) {
           delete d.data[0].password
           localStorage.setItem('_user', JSON.stringify(d.data[0]))
+          localStorage.setItem('_token', d.data[0].token)
+          localStorage.setItem('_url', d.data[0].url)
+          this.router.navigateByUrl('/')
         } else {
           this.errBlock = true
         }

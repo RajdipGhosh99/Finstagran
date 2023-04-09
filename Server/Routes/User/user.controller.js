@@ -26,6 +26,7 @@ async function verifyUser(req, res) {
 				let match = await bcrypt.compare(password, user[0].password);
 
 				if (match) {
+					user.url = ''
 					res.status(200).json({
 						message: "User details retrived",
 						status: "success",

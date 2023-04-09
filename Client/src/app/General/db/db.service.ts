@@ -13,4 +13,10 @@ export class DbService {
     return this.http.post(`${environment.API_URL}/user/login`, body)
   }
 
+  userSignUp(body: any) {
+    return this.http.post(`${environment.API_URL}/user/signup`, body)
+  }
+
+
+
 }

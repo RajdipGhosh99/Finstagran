@@ -8,6 +8,7 @@ const postsController = require("./Routes/Posts/index");
 
 const errorHandlerMiddleware = require("./Middleware/errorHandler");
 const customResponseMiddleware = require("./Middleware/customResponse");
+const authorizers = require('./Middleware/authorizers')
 
 app.use(express.json());
 app.use(cors());
@@ -17,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userController);
-app.use("/post", postsController);
+app.use("/post", authorizers, postsController);
 
 app.use(errorHandlerMiddleware);
 // errorHandler(app);
