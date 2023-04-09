@@ -483,3 +483,30 @@ span.language {
     }
 
 }
+
+.error-block {
+    color: rgb(237, 73, 86);
+    font-size: 14px;
+    text-align: center;
+    line-height: 18px;
+}
+
+.error {
+    margin: 31px;
+}
+
+button[disabled] {
+    background-color: #a2d5ff;
+}
+
+.pass-show {
+    position: absolute;
+    position: absolute;
+    float: right;
+    cursor: pointer;
+    margin: 10px 2px 0px 227px;
+    font-size: 13px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 550;
+
+}

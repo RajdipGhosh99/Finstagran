@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DbService {
 
-  constructor(private http: HttpClientModule) { }
+  constructor(private http: HttpClient) { }
 
   userLogIn(body: any) {
-
+    return this.http.post(`${environment.API_URL}/user/login`, body)
   }
 
 }

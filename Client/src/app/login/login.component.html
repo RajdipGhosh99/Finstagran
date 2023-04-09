@@ -13,32 +13,38 @@
                                     alt="Instagram">
                             </div><!-- Header end -->
                             <div class="form-wrap">
-                                <form class="form">
+                                <form class="form" [formGroup]="loginForm" (ngSubmit)="loginClicked()">
 
                                     <div class="input-box">
-                                        <input type="text" id="name" aria-describedby=""
-                                            placeholder="Phone number, username, or email" aria-required="true"
-                                            maxlength="30" autocapitalize="off" autocorrect="off" name="username"
-                                            value="" required>
+                                        <input type="text" id="name" aria-describedby="" formControlName="email"
+                                            placeholder="Enter email" aria-required="true" maxlength="30" required
+                                            autocomplete="email">
                                     </div>
 
                                     <div class="input-box">
-                                        <input type="password" name="password" id="password" placeholder="Password"
-                                            aria-describedby="" maxlength="30" aria-required="true" autocapitalize="off"
-                                            autocorrect="off" required>
+                                        <input type="{{passShow?'text':'password'}}" placeholder="Password"
+                                            formControlName="password" aria-describedby="" maxlength="30"
+                                            aria-required="true" autocomplete="new-password">
+                                        <p class="pass-show" (click)="passShowHide()">{{!passShow?'SHOW':'HIDE'}}</p>
                                     </div>
 
                                     <span class="button-box">
-                                        <button class="btn" type="submit" name="submit">Log in</button>
+                                        <button class="btn" type="submit" name="submit"
+                                            [disabled]="loginForm.invalid">Login</button>
                                     </span>
 
-                                    <a class="forgot" href="">Forgot password?</a>
+                                    <div class=" error" *ngIf="errBlock">
+                                        <p class="error-block">Sorry, your password was incorrect. Please double-check
+                                            your password.</p>
+                                    </div>
+
+                                    <a class="forgot" routerLink="/forgot-password">Forgot password?</a>
                                 </form>
                             </div> <!-- Form-wrap end -->
                         </div> <!-- Login-box end -->
 
                         <div class="login-box">
-                            <p class="text">Don't have an account?<a href="#">Sign up</a></p>
+                            <p class="text">Don't have an account?<a routerLink="/signup">Sign up</a></p>
                         </div> <!-- Signup-box end -->
 
                         <div class="app">
