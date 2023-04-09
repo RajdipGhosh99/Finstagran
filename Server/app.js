@@ -3,8 +3,10 @@ require("dotenv").config();
 const mongoose = require("./DBmodule/dbCon");
 const { json } = require("body-parser");
 const app = express();
-const userController = require("./Routes/User/index");
 const cors = require("cors");
+const userController = require("./Routes/User/index");
+const postsController = require("./Routes/Posts/index");
+
 const errorHandler = require("./Middleware/errorHandler");
 
 app.use(express.json());
@@ -14,6 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userController);
+app.use("/post", postsController);
 
 errorHandler(app);
 
