@@ -4,7 +4,7 @@ const postActivitiesSchema = new mongoose.Schema({
     upm_or_cm_id: {
         trim: true,
         required: true,
-        type: String,
+        type: new mongoose.Types.ObjectId,
     },
     likes: {
         trim: true,
