@@ -7,10 +7,12 @@ const cors = require("cors");
 const userController = require("./Routes/User/index");
 const postsController = require("./Routes/Posts/index");
 
-const errorHandler = require("./Middleware/errorHandler");
+const errorHandlerMiddleware = require("./Middleware/errorHandler");
+const customResponseMiddleware = require("./Middleware/customResponse");
 
 app.use(express.json());
 app.use(cors());
+app.use(customResponseMiddleware);
 app.get("/", (req, res) => {
 	res.send("Hello Express!");
 });
@@ -18,7 +20,8 @@ app.get("/", (req, res) => {
 app.use("/user", userController);
 app.use("/post", postsController);
 
-errorHandler(app);
+app.use(errorHandlerMiddleware);
+// errorHandler(app);
 
 app.listen(process.env.PORT, () =>
 	console.log(`app is running on port ${process.env.PORT} 🔥`),

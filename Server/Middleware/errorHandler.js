@@ -1,4 +1,4 @@
-function errorHandler(error, req, res, next) {
+function errorHandlerMiddleware(error, req, res, next) {
 	if (res) {
 		return res.status(error.statusCode || 500).json({
 			status: "error",
@@ -10,6 +10,7 @@ function errorHandler(error, req, res, next) {
 	// console.log("errorHandler", error && error.stack ? error.stack : error);
 }
 
-module.exports = function (app) {
-	app.use(errorHandler);
-};
+module.exports = errorHandlerMiddleware;
+// module.exports = function (app) {
+// 	app.use(errorHandler);
+// };

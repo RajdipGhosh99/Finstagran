@@ -112,11 +112,12 @@ async function createUser(req, res) {
 }
 
 async function testing(req, res) {
-	res.status(200).json({
-		message: "User created",
-		status: "success",
-		data: [{ token: token }],
-	});
+	res.customResponse(300, "success", "Testing new custom resp", [{}]);
+	// res.status(200).json({
+	// 	message: "User created",
+	// 	status: "success",
+	// 	data: [{ token: token }],
+	// });
 }
 
 module.exports = {
