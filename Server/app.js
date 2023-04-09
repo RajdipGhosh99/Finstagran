@@ -1,7 +1,6 @@
 const express = require("express");
 require("dotenv").config();
-const mongoose = require("./DBmodule/dbCon");
-const { json } = require("body-parser");
+require("./DBmodule/dbCon");
 const app = express();
 const cors = require("cors");
 const userController = require("./Routes/User/index");
