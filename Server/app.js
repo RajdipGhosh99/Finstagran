@@ -4,6 +4,7 @@ const mongoose = require('./DBmodule/dbCon');
 const { json } = require("body-parser");
 const app = express()
 const userController = require('./Routes/User/index')
+const postsController = require('./Routes/Posts/index')
 const cors = require('cors');
 
 app.use(express.json())
@@ -12,7 +13,9 @@ app.get('/', (req, res) => {
   res.send('Hello Express!')
 })
 
+
 app.use('/user', userController)
+app.use('/post', postsController)
 
 
 
