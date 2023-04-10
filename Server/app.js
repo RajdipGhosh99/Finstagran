@@ -8,7 +8,7 @@ const postsController = require("./Routes/Posts/index");
 
 const errorHandlerMiddleware = require("./Middleware/errorHandler");
 const customResponseMiddleware = require("./Middleware/customResponse");
-const authorizers = require('./Middleware/authorizers')
+const authorizers = require("./Middleware/authorizers");
 
 app.use(express.json());
 app.use(cors());
