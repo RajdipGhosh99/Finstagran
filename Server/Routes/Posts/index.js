@@ -13,5 +13,10 @@ router.post(
 	"/user_list_for_likes/:pc_id",
 	tryCatch(postsActivityController.getUsersLikedPostOrComment),
 );
+router.post("/add_comment", tryCatch(postsActivityController.addComment));
+router.get(
+	"/all_comments/:upm_id/:sort_order",
+	tryCatch(postsActivityController.allComment),
+);
 
 module.exports = router;
