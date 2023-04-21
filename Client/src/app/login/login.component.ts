@@ -21,6 +21,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private dbService: DbService, private fb: FormBuilder, private router: Router) {
 
+    let user: any = localStorage.getItem('_user')
+    if (user && JSON.parse(user).token) {
+      this.router.navigateByUrl('/')
+    }
   }
 
   ngOnInit(): void {
