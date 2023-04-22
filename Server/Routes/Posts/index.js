@@ -5,6 +5,8 @@ const postsActivityController = require("./posts_activity.controller");
 const { tryCatch } = require("../../Utils/tryCatch");
 
 router.post("/create", postsController.createPost);
+router.get('/fetch', tryCatch(postsController.getPosts))
+
 router.post(
 	"/like_or_dislike",
 	tryCatch(postsActivityController.add_like_dislike),

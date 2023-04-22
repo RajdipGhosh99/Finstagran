@@ -1,5 +1,7 @@
 const postModel = require('../../Models/userposts.model')
 const activityModel = require('../../Models/postsactivities.model')
+const mongoose = require("mongoose");
+const ObjectId = mongoose.Types.ObjectId;
 
 
 async function createPost(req, res) {
@@ -11,6 +13,7 @@ async function createPost(req, res) {
                 data: null
             })
         } else {
+            req.body.user_id = new ObjectId(req.body.user_id)
             let user = await postModel.create(req.body)
             console.log(user);
 
@@ -43,6 +46,58 @@ async function createPost(req, res) {
     }
 }
 
+
+const getPosts = async (req, res) => {
+    if (!req.query.user_id) {
+        return res.customResponse(422, 'error')
+    }
+
+    let data = await postModel.aggregate([
+        {
+            '$match': {
+                'user_id': new ObjectId(req.query.user_id),
+                'is_deleted': false
+            }
+        }, {
+            '$lookup': {
+                'from': 'likes_masters',
+                'localField': '_id',
+                'foreignField': 'upm_or_cm_id',
+                'as': 'post_likes',
+                'pipeline': [
+                    {
+                        '$match': {
+                            'is_deleted': {
+                                '$ne': true
+                            }
+                        }
+                    }
+                ]
+            }
+        }, {
+            '$lookup': {
+                'from': 'comments_masters',
+                'localField': '_id',
+                'foreignField': 'upm_id',
+                'as': 'post_comments',
+                'pipeline': [
+                    {
+                        '$match': {
+                            'is_deleted': {
+                                '$ne': true
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ])
+
+    res.customResponse(200, 'success', '', data)
+
+}
+
 module.exports = {
-    createPost
+    createPost,
+    getPosts
 }
