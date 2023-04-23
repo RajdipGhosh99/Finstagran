@@ -71,6 +71,13 @@ const getPosts = async (req, res) => {
                                 '$ne': true
                             }
                         }
+                    }, {
+                        '$project': {
+                            '_id': 0,
+                            'upm_or_cm_id': 0,
+                            'is_deleted': 0,
+                            '__v': 0
+                        }
                     }
                 ]
             }
@@ -87,8 +94,54 @@ const getPosts = async (req, res) => {
                                 '$ne': true
                             }
                         }
+                    }, {
+                        '$project': {
+                            '_id': 0,
+                            'upm_or_cm_id': 0,
+                            'is_deleted': 0,
+                            '__v': 0
+                        }
                     }
                 ]
+            }
+        }, {
+            '$lookup': {
+                'from': 'user_masters',
+                'localField': 'user_id',
+                'foreignField': '_id',
+                'as': 'post_by',
+                'pipeline': [
+                    {
+                        '$project': {
+                            '_id': 0,
+                            'username': 0,
+                            'password': 0,
+                            'token': 0,
+                            'mobile': 0,
+                            'email': 0,
+                            '__v': 0
+                        }
+                    }
+                ]
+            }
+        }, {
+            '$sort': {
+                '_id': -1
+            }
+        }, {
+            '$project': {
+                'title': 1,
+                'contents': 1,
+                'tags': 1,
+                'time_stamp': 1,
+                'post_likes': 1,
+                'post_comments': 1,
+                'user_id': 1,
+                'user_name': {
+                    '$arrayElemAt': [
+                        '$post_by.fullname', 0
+                    ]
+                }
             }
         }
     ])

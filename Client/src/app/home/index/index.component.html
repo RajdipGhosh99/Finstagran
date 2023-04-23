@@ -2,8 +2,8 @@
     <app-sidenav></app-sidenav>
 
     <div class="tl-parent">
-        <ng-container *ngFor="let post of [].constructor(10)">
-            <app-post-div></app-post-div>
+        <ng-container *ngFor="let post of postsList">
+            <app-post-div [postObj]="post"></app-post-div>
         </ng-container>
         <div class="right-bl"></div>
     </div>

@@ -5,11 +5,15 @@
                 <div class="info">
                     <div class="user">
                         <div class="profile-pic"><img src="../../../assets/img/cover 1.png" alt="Img"></div>
-                        <p class="username">modern_web_channel</p>
+                        <p class="username">{{postObj?.user_name}}</p>
                     </div>
                     <img src="../../../assets/img/option.PNG" class="options" alt="">
                 </div>
-                <img src="../../../assets/img/cover 1.png" class="post-image" alt="">
+                <ng-container *ngFor="let content of postObj?.contents">
+                    <img *ngIf="content.type=='img'" [src]="'https://'+content.url" class="post-image" alt="">
+                </ng-container>
+                <img *ngIf="postObj?.contents?.length==0" [src]="" class="post-image" alt="">
+
                 <div class="post-content">
                     <div class="reaction-wrapper">
                         <img src="../../../assets/img/like.PNG" class="icon" alt="">
@@ -17,11 +21,10 @@
                         <img src="../../../assets/img/send.PNG" class="icon" alt="">
                         <img src="../../../assets/img/save.PNG" class="save icon" alt="">
                     </div>
-                    <p class="likes">1,012 likes</p>
-                    <p class="description"><span>username </span> Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Pariatur tenetur veritatis placeat, molestiae impedit aut provident eum quo natus
-                        molestias?</p>
-                    <p class="post-time">2 minutes ago</p>
+                    <p class="likes">{{postObj?.post_likes?.length?postObj?.post_likes.length:"0"}} likes</p>
+                    <p class="description"><span>{{postObj?.user_name}}</span> {{postObj?.title}}</p>
+                    <p class="description"><a><span *ngFor="let tag of postObj?.tags">{{'#'+tag}}</span></a></p>
+                    <p class="post-time">{{postObj?.time_stamp? timeAgo(postObj?.time_stamp):0}} </p>
                 </div>
                 <div class="comment-wrapper">
                     <img src="../../../assets/img/smile.PNG" class="icon" alt="">
