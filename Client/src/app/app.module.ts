@@ -8,10 +8,11 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 // import { NavbarModule } from './navbar/navbar.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SignupComponent } from './signup/signup.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './logout/logout.component';
 import { HomeModule } from './home/home.module';
+import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
 
 
 @NgModule({
@@ -33,7 +34,11 @@ import { HomeModule } from './home/home.module';
     HomeModule
 
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorInterceptor,
+    multi: true,
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

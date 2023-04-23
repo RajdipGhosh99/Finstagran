@@ -25,7 +25,9 @@ export class IndexComponent implements OnInit {
 
   getPosts() {
     this.postsList = []
-    this.dbservice.getPosts(this.user._id).subscribe({
+    // console.log(this.user._id);
+
+    this.dbservice.getPosts(JSON.parse(this.user)._id).subscribe({
       next: (d: any) => {
         this.postsList = d.data
         console.log(this.postsList);

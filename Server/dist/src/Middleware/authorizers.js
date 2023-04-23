@@ -8,12 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const userModel = require('../Models/user.model');
+const user_model_1 = __importDefault(require("../Models/user.model"));
 const authorizers = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const token = req.headers["authorization"];
     if (token) {
-        let user = yield userModel.findOne({ token: token });
+        let user = yield user_model_1.default.findOne({ token: token });
         if (user) {
             next();
         }

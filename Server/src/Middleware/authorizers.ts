@@ -1,4 +1,4 @@
-const userModel = require('../Models/user.model')
+import userModel from '../Models/user.model'
 
 const authorizers = async (req, res, next) => {
     const token = req.headers["authorization"]
