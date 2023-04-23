@@ -1,0 +1,16 @@
+.root {
+    display: flex;
+    justify-content: space-around;
+}
+
+.tl-parent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 0px;
+}
+
+.right-bl {
+    height: 900px;
+    width: 900px;
+}

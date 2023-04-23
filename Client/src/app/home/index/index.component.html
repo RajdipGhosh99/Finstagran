@@ -1,3 +1,10 @@
-<div>
-    <app-post-div></app-post-div>
+<div class="root">
+    <app-sidenav></app-sidenav>
+
+    <div class="tl-parent">
+        <ng-container *ngFor="let post of [].constructor(10)">
+            <app-post-div></app-post-div>
+        </ng-container>
+        <div class="right-bl"></div>
+    </div>
 </div>

@@ -10,7 +10,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
   ],
   imports: [
     CommonModule
-  ],exports:[
+  ], exports: [
     SidenavComponent
   ]
 })

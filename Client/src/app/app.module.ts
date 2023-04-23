@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { NavbarModule } from './navbar/navbar.module';
+// import { NavbarModule } from './navbar/navbar.module';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +26,7 @@ import { HomeModule } from './home/home.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NavbarModule,
+    // NavbarModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

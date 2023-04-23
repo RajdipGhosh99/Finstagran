@@ -1,22 +1,23 @@
 .post {
-    width: 100%;
+    width: 500px;
     height: auto;
     background: #fff;
-    border: 1px solid #dfdfdf;
+    border: 5px solid #ffffff;
     margin-top: 40px;
 }
 
 .info {
-    width: 100%;
+    width: 500px;
     height: 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0px;
+    // margin-left: -67px
 }
 
 .info .username {
-    width: auto;
+    width: 500px;
     font-weight: bold;
     color: #000;
     font-size: 14px;
@@ -24,6 +25,7 @@
 }
 
 .info .options {
+    margin-left: -67px;
     height: 10px;
     cursor: pointer;
 }
@@ -33,25 +35,27 @@
     align-items: center;
 }
 
-.info .profile-pic {
-    height: 40px;
-    width: 40px;
-    padding: 0;
-    background: none;
+.profile-pic {
+    img {
+        height: 35px !important;
+        width: 35px !important;
+        padding: 0;
+        border-radius: 50px;
+    }
+
+    // background: none;
+    // border: none;
 }
 
-.info .profile-pic img {
-    border: none;
-}
 
 .post-image {
-    width: 100%;
+    width: 500px;
     height: 500px;
     object-fit: cover;
 }
 
 .post-content {
-    width: 100%;
+    width: 500px;
     padding: 20px;
 }
 
@@ -76,7 +80,7 @@
 }
 
 .comment-wrapper {
-    width: 100%;
+    width: 500px;
     height: 50px;
     border-radius: 1px solid #dfdfdf;
     display: flex;
@@ -85,12 +89,13 @@
 }
 
 .comment-wrapper .icon {
-    height: 30px;
+    height: 23px;
+    padding-right: 4px;
 }
 
 .comment-box {
     width: 80%;
-    height: 100%;
+    height: auto;
     border: none;
     outline: none;
     font-size: 14px;
@@ -99,7 +104,7 @@
 .comment-btn,
 .action-btn {
     width: 70px;
-    height: 100%;
+    height: auto;
     background: none;
     border: none;
     outline: none;
@@ -110,7 +115,7 @@
 }
 
 .reaction-wrapper {
-    width: 100%;
+    width: 500px;
     height: 50px;
     display: flex;
     margin-top: -20px;
@@ -125,4 +130,8 @@
 
 .reaction-wrapper .icon.save {
     margin-left: auto;
+}
+
+.main {
+    margin: auto;
 }
