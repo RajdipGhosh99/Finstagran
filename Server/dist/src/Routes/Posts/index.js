@@ -10,6 +10,7 @@ const posts_activity_controller_1 = __importDefault(require("./posts_activity.co
 const tryCatch_1 = require("../../Utils/tryCatch");
 router.post("/create", posts_controller_1.default.createPost);
 router.get('/fetch', (0, tryCatch_1.tryCatch)(posts_controller_1.default.getPosts));
+router.post(`/upload`, posts_controller_1.default.fileUpload);
 router.post("/like_or_dislike", (0, tryCatch_1.tryCatch)(posts_activity_controller_1.default.add_like_dislike));
 router.post("/user_list_for_likes/:pc_id", (0, tryCatch_1.tryCatch)(posts_activity_controller_1.default.getUsersLikedPostOrComment));
 router.post("/add_comment", (0, tryCatch_1.tryCatch)(posts_activity_controller_1.default.addComment));

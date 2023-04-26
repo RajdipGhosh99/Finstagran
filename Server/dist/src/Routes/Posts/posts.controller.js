@@ -16,6 +16,8 @@ const userposts_model_1 = __importDefault(require("../../Models/userposts.model"
 const postsactivities_model_1 = __importDefault(require("../../Models/postsactivities.model"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const ObjectId = mongoose_1.default.Types.ObjectId;
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 function createPost(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -157,7 +159,35 @@ const getPosts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     ]);
     res.customResponse(200, 'success', '', data);
 });
+const fileUpload = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
+    console.log(req === null || req === void 0 ? void 0 : req.files);
+    const videoFile = (_a = req === null || req === void 0 ? void 0 : req.files) === null || _a === void 0 ? void 0 : _a.video;
+    if (!videoFile) {
+        return res.customResponse(422, "error");
+    }
+    const fileSize = videoFile.size;
+    const videoPath = path_1.default.join(__dirname, 'uploaded_video.mp4');
+    const videoStream = fs_1.default.createWriteStream(videoPath);
+    let uploadedSize = 0;
+    videoFile.on('data', (chunk) => {
+        uploadedSize += chunk.length;
+        const progress = (uploadedSize / fileSize) * 100;
+        console.log(`Upload progress: ${progress.toFixed(2)}%`);
+        res.write(JSON.stringify({ progress }));
+    });
+    videoFile.pipe(videoStream);
+    videoStream.on('finish', () => {
+        console.log('Video uploaded successfully');
+        res.send('Video uploaded successfully');
+    });
+    videoStream.on('error', (err) => {
+        console.error(err);
+        res.status(500).send('Error uploading video');
+    });
+});
 exports.default = {
     createPost,
-    getPosts
+    getPosts,
+    fileUpload
 };

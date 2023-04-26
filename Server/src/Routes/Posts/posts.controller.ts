@@ -150,7 +150,47 @@ const getPosts = async (req, res) => {
 
 }
 
+
+const fileUpload = async (req: any, res) => {
+
+    const fileArr = req?.files?.fileArr;
+    if (!fileArr) {
+        return res.customResponse(422, "error")
+    }
+
+    if (fileArr?.length > 1) {
+        console.log("miltiple file");
+
+    } else {
+        console.log("single file");
+        const file = req.files.fileArr;
+        const filePath = '../../../../Uploads' + file.name;
+        const fileSize = file.size;
+
+        file.mv(filePath, (err) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+
+            res.send('File uploaded successfully');
+        });
+
+        let uploadedSize = 0;
+
+        // listen for data events to track upload progress
+        req.on('data', (chunk) => {
+            uploadedSize += chunk.length;
+            const progress = Math.round((uploadedSize / fileSize) * 100);
+            console.log('Upload progress: ' + progress + '%');
+        });
+    }
+
+
+
+}
+
 export default {
     createPost,
-    getPosts
+    getPosts,
+    fileUpload
 }
