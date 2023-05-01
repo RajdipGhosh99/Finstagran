@@ -2,6 +2,8 @@ import postModel from '../../Models/userposts.model';
 import activityModel from '../../Models/postsactivities.model';
 import mongoose from "mongoose";
 const ObjectId = mongoose.Types.ObjectId;
+import path from 'path'
+import fs from 'fs'
 
 
 async function createPost(req, res) {
@@ -158,33 +160,39 @@ const fileUpload = async (req: any, res) => {
         return res.customResponse(422, "error")
     }
 
+    let _path = path.join(__dirname, "..", '..', '..', 'public', 'uploads')
+    if (!fs.existsSync(_path)) {
+        fs.mkdirSync(_path);
+    }
     if (fileArr?.length > 1) {
         console.log("miltiple file");
 
     } else {
-        console.log("single file");
+        console.log("single file")
         const file = req.files.fileArr;
-        const filePath = '../../../../Uploads' + file.name;
-        const fileSize = file.size;
+        const random = new Date().getMilliseconds().toString()
+        await file.mv(path.join(_path, + random + path.parse(file.name).ext))
+        console.log(path.join(_path, random).toString());
+        return res.customResponse(200, "success", '', [{ name: `${random}`, ext: path.parse(file.name).ext }])
+    }
+}
 
-        file.mv(filePath, (err) => {
-            if (err) {
-                return res.status(500).send(err);
-            }
 
-            res.send('File uploaded successfully');
-        });
+const getFileStream = async (req, res) => {
+    const fileName = req.params.name
+    let _path = path.join(__dirname, "..", '..', '..', 'public', 'uploads', fileName)
+    console.log(_path);
 
-        let uploadedSize = 0;
-
-        // listen for data events to track upload progress
-        req.on('data', (chunk) => {
-            uploadedSize += chunk.length;
-            const progress = Math.round((uploadedSize / fileSize) * 100);
-            console.log('Upload progress: ' + progress + '%');
-        });
+    if (!fileName) {
+        return res.customResponse(422, 'error')
     }
 
+    if (!fs.existsSync(_path)) {
+        return res.customResponse(400, 'error', "File not exists")
+    }
+
+    const readStram = fs.createReadStream(_path)
+    readStram.pipe(res)
 
 
 }
@@ -192,5 +200,6 @@ const fileUpload = async (req: any, res) => {
 export default {
     createPost,
     getPosts,
-    fileUpload
+    fileUpload,
+    getFileStream
 }

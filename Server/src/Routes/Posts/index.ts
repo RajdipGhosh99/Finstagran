@@ -6,7 +6,8 @@ import { tryCatch } from "../../Utils/tryCatch";
 
 router.post("/create", postsController.createPost);
 router.get('/fetch', tryCatch(postsController.getPosts))
-router.post(`/upload`, postsController.fileUpload)
+router.post(`/upload`, tryCatch(postsController.fileUpload))
+router.get(`/file-stream/:name`, tryCatch(postsController.getFileStream))
 
 router.post(
 	"/like_or_dislike",

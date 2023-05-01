@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'logout', component: LogoutComponent },
 
-
+  { path: ':user_name', pathMatch: 'full', loadChildren: () => import('./view-profile/view-profile-routing.module').then(m => m.ViewProfileRoutingModule) },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
