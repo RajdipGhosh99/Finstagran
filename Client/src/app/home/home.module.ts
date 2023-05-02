@@ -4,12 +4,14 @@ import { HomeRoutingModule } from './home-routing.module';
 import { IndexComponent } from './index/index.component';
 import { PostDivComponent } from './post-div/post-div.component';
 import { NavbarModule } from '../navbar/navbar.module';
+import { PostPopupComponent } from './post-popup/post-popup.component';
 
 
 @NgModule({
   declarations: [
     IndexComponent,
-    PostDivComponent
+    PostDivComponent,
+    PostPopupComponent
   ],
   exports: [PostDivComponent],
   imports: [

@@ -98,20 +98,24 @@
     height: auto;
     border: none;
     outline: none;
-    font-size: 14px;
+    font-size: 17px;
+    font-weight: 600;
 }
 
-.comment-btn,
-.action-btn {
+.comment-btn {
     width: 70px;
     height: auto;
     background: none;
     border: none;
     outline: none;
     text-transform: capitalize;
-    font-size: 16px;
+    font-size: 17px;
     color: rgb(0, 162, 255);
-    opacity: 0.5;
+    font-weight: 500;
+}
+
+.comment-btn:hover {
+    font-weight: bold;
 }
 
 .reaction-wrapper {
@@ -127,6 +131,11 @@
     margin: 0;
     margin-right: 20px;
 }
+
+.icon:hover {
+    opacity: 0.5;
+}
+
 
 .reaction-wrapper .icon.save {
     margin-left: auto;

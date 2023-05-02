@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PostDivComponent implements OnInit {
   @Input() postObj: any = {}
+  public popupHide: boolean = false;
 
   ngOnInit(): void {
 

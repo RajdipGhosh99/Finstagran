@@ -1,37 +1,83 @@
 <section class="main">
-    <div class="wrapper">
-        <div class="left-col">
-            <div class="post">
-                <div class="info">
-                    <div class="user">
-                        <div class="profile-pic"><img src="../../../assets/img/cover 1.png" alt="Img"></div>
-                        <p class="username">{{postObj?.user_name}}</p>
-                    </div>
-                    <img src="../../../assets/img/option.PNG" class="options" alt="">
-                </div>
-                <ng-container *ngFor="let content of postObj?.contents">
-                    <img *ngIf="content.type=='img'" [src]="'https://'+content.url" class="post-image" alt="">
-                </ng-container>
-                <img *ngIf="postObj?.contents?.length==0" [src]="" class="post-image" alt="">
-
-                <div class="post-content">
-                    <div class="reaction-wrapper">
-                        <img src="../../../assets/img/like.PNG" class="icon" alt="">
-                        <img src="../../../assets/img/comment.PNG" class="icon" alt="">
-                        <img src="../../../assets/img/send.PNG" class="icon" alt="">
-                        <img src="../../../assets/img/save.PNG" class="save icon" alt="">
-                    </div>
-                    <p class="likes">{{postObj?.post_likes?.length?postObj?.post_likes.length:"0"}} likes</p>
-                    <p class="description"><span>{{postObj?.user_name}}</span> {{postObj?.title}}</p>
-                    <p class="description"><a><span *ngFor="let tag of postObj?.tags">{{'#'+tag}}</span></a></p>
-                    <p class="post-time">{{postObj?.time_stamp? timeAgo(postObj?.time_stamp):0}} </p>
-                </div>
-                <div class="comment-wrapper">
-                    <img src="../../../assets/img/smile.PNG" class="icon" alt="">
-                    <input type="text" class="comment-box" placeholder="Add a comment">
-                    <button class="comment-btn">post</button>
-                </div>
+  <div class="wrapper">
+    <div class="left-col">
+      <div class="post">
+        <div class="info">
+          <div class="user">
+            <div class="profile-pic">
+              <img src="../../../assets/img/cover 1.png" alt="Img" />
             </div>
+            <p class="username">{{ postObj?.user_name }}</p>
+          </div>
+          <img src="../../../assets/img/option.PNG" class="options" alt="" />
         </div>
+        <ng-container *ngFor="let content of postObj?.contents">
+          <img
+            *ngIf="content.type == 'img'"
+            [src]="'https://' + content.url"
+            class="post-image"
+            alt=""
+          />
+        </ng-container>
+        <img
+          *ngIf="postObj?.contents?.length == 0"
+          [src]=""
+          class="post-image"
+          alt=""
+        />
+
+        <div class="post-content">
+          <div class="reaction-wrapper">
+            <img
+              src="../../../assets/img/like.PNG"
+              class="icon"
+              alt="like"
+              tooltip="like"
+            />
+            <img
+              src="../../../assets/img/comment.PNG"
+              class="icon"
+              alt="comment"
+            />
+            <img src="../../../assets/img/send.PNG" class="icon" alt="share" />
+            <img
+              src="../../../assets/img/save.PNG"
+              class="save icon"
+              alt="save"
+            />
+          </div>
+          <p class="likes">
+            {{ postObj?.post_likes?.length ? postObj?.post_likes.length : "0" }}
+            likes
+          </p>
+          <p class="description">
+            <span>{{ postObj?.user_name }}</span> {{ postObj?.title }}
+          </p>
+          <p class="description">
+            <a>
+              <span *ngFor="let tag of postObj?.tags">{{ "#" + tag }}</span></a
+            >
+          </p>
+          <p class="post-time">
+            {{ postObj?.time_stamp ? timeAgo(postObj?.time_stamp) : 0 }}
+          </p>
+        </div>
+        <div class="comment-wrapper">
+          <img
+            src="../../../assets/img/smile.PNG"
+            class="icon"
+            alt="comment icon"
+          />
+          <input
+            type="text"
+            class="comment-box"
+            placeholder="Add a comment..."
+          />
+          <button class="comment-btn">post</button>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
+
+<app-post-popup [hide]="popupHide"></app-post-popup>
