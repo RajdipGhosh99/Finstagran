@@ -1,4 +1,5 @@
 <section lang="en">
+
   <body>
     <aside class="sidebar">
       <header class="sidebar-header">
@@ -29,11 +30,7 @@
 
         <button>
           <span>
-            <img
-              class="nav-img"
-              src="../../../assets/img/messenger.PNG"
-              alt=""
-            />
+            <img class="nav-img" src="../../../assets/img/messenger.PNG" alt="" />
             <span>Messages</span>
           </span>
         </button>
@@ -45,7 +42,7 @@
           </span>
         </button>
 
-        <button>
+        <button (click)="createPostToggle()">
           <span>
             <img class="nav-img" src="../../../assets/img/add.PNG" alt="" />
             <span>Create</span>
@@ -55,8 +52,7 @@
         <button>
           <span>
             <img
-              src="https://raw.githubusercontent.com/zouraiz523/Instagram-Sidebar-/b2750eba8fa31cde49364428bf28fbb41b3a02f0/Instagram%20Sidebar%20Coding/Profile.svg"
-            />
+              src="https://raw.githubusercontent.com/zouraiz523/Instagram-Sidebar-/b2750eba8fa31cde49364428bf28fbb41b3a02f0/Instagram%20Sidebar%20Coding/Profile.svg" />
             <span>Profile</span>
           </span>
         </button>
@@ -70,6 +66,7 @@
       </nav>
     </aside>
   </body>
+
 </section>
 
-<!-- <app-create-post></app-create-post> -->
+<app-create-post *ngIf="createPost" (close)="createPostToggle()"></app-create-post>

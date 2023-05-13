@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class SidenavComponent {
 
+  public createPost: boolean = false
+
+
+  createPostToggle() {
+    this.createPost = !this.createPost
+  }
+
 }

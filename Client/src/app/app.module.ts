@@ -13,6 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './logout/logout.component';
 import { HomeModule } from './home/home.module';
 import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -31,7 +34,9 @@ import { AuthInterceptorInterceptor } from './auth-interceptor.interceptor';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HomeModule
+    HomeModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
 
   ],
   providers: [{

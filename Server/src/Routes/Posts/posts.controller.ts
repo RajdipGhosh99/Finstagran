@@ -27,7 +27,7 @@ async function createPost(req, res) {
                     shares: 0
                 })
 
-                res.status(400).json({
+                res.status(200).json({
                     message: "Post created successfully",
                     status: 'success',
                     data: [user._id],
@@ -154,6 +154,8 @@ const getPosts = async (req, res) => {
 
 
 const fileUpload = async (req: any, res) => {
+
+    console.log(req.files);
 
     const fileArr = req?.files?.fileArr;
     if (!fileArr) {

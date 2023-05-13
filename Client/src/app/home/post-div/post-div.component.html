@@ -12,39 +12,16 @@
           <img src="../../../assets/img/option.PNG" class="options" alt="" />
         </div>
         <ng-container *ngFor="let content of postObj?.contents">
-          <img
-            *ngIf="content.type == 'img'"
-            [src]="'https://' + content.url"
-            class="post-image"
-            alt=""
-          />
+          <img *ngIf="content.type == 'img'" [src]="'https://' + content.url" class="post-image" alt="" />
         </ng-container>
-        <img
-          *ngIf="postObj?.contents?.length == 0"
-          [src]=""
-          class="post-image"
-          alt=""
-        />
+        <img *ngIf="postObj?.contents?.length == 0" [src]="" class="post-image" alt="" />
 
         <div class="post-content">
           <div class="reaction-wrapper">
-            <img
-              src="../../../assets/img/like.PNG"
-              class="icon"
-              alt="like"
-              tooltip="like"
-            />
-            <img
-              src="../../../assets/img/comment.PNG"
-              class="icon"
-              alt="comment"
-            />
+            <img src="../../../assets/img/like.PNG" class="icon" alt="like" tooltip="like" />
+            <img src="../../../assets/img/comment.PNG" class="icon" alt="comment" />
             <img src="../../../assets/img/send.PNG" class="icon" alt="share" />
-            <img
-              src="../../../assets/img/save.PNG"
-              class="save icon"
-              alt="save"
-            />
+            <img src="../../../assets/img/save.PNG" class="save icon" alt="save" />
           </div>
           <p class="likes">
             {{ postObj?.post_likes?.length ? postObj?.post_likes.length : "0" }}
@@ -55,24 +32,15 @@
           </p>
           <p class="description">
             <a>
-              <span *ngFor="let tag of postObj?.tags">{{ "#" + tag }}</span></a
-            >
+              <span *ngFor="let tag of postObj?.tags">{{ "#" + tag }}</span></a>
           </p>
           <p class="post-time">
             {{ postObj?.time_stamp ? timeAgo(postObj?.time_stamp) : 0 }}
           </p>
         </div>
         <div class="comment-wrapper">
-          <img
-            src="../../../assets/img/smile.PNG"
-            class="icon"
-            alt="comment icon"
-          />
-          <input
-            type="text"
-            class="comment-box"
-            placeholder="Add a comment..."
-          />
+          <img src="../../../assets/img/smile.PNG" class="icon" alt="comment icon" />
+          <input type="text" class="comment-box" placeholder="Add a comment..." />
           <button class="comment-btn">post</button>
         </div>
       </div>
@@ -80,4 +48,4 @@
   </div>
 </section>
 
-<app-post-popup [hide]="popupHide"></app-post-popup>
+<!-- <app-post-popup [hide]="popupHide"></app-post-popup> -->
