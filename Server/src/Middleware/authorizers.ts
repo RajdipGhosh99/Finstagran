@@ -1,19 +1,30 @@
+import { log } from 'console';
 import userModel from '../Models/user.model'
+import jwt from "jsonwebtoken";
 
 const authorizers = async (req, res, next) => {
     const token = req.headers["authorization"]
     if (token) {
         let user = await userModel.findOne({ token: token })
         if (user) {
-            next()
+            try {
+                jwt.verify(token, process.env.JWT_PRIVATE)
+                next()
+            } catch (error) {
+                return res.status(401).json({
+                    status: 'error',
+                    message: 'Not Authorize user.'
+                })
+
+            }
         } else {
-            res.status(401).json({
+            return res.status(401).json({
                 status: 'error',
                 message: 'Not Authorize user.'
             })
         }
     } else {
-        res.status(401).json({
+        return res.status(401).json({
             status: 'error',
             message: 'Not Authorize user.'
         })

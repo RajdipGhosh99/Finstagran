@@ -9,7 +9,7 @@ const userSchema: Schema = new mongoose.Schema<any>({
     },
     mobile: {
         trim: true,
-        required: true,
+        default: '',
         type: String
     },
     fullname: {
@@ -25,12 +25,27 @@ const userSchema: Schema = new mongoose.Schema<any>({
     },
     password: {
         trim: true,
-        required: true,
+        // required: true,
         minlength: [5, "Password size must be atleast of 5 character."],
         type: String
     },
     token: {
         type: String
+    },
+    refresh_token: {
+        trim: true,
+        type: String,
+        default: null
+    },
+    profile_picture: {
+        default: "",
+        trim: true,
+        type: String
+    },
+    sso: {
+        default: '',
+        type: String,
+        trim: true
     }
 
 }, { collection: 'user_masters' })

@@ -20,11 +20,12 @@ async function verifyUser(req, res) {
 					},
 				},
 			]);
-			console.log(user);
+			// console.log(user);
 			if (user.length > 0) {
 				let match = await bcrypt.compare(password, user[0].password);
 
 				if (match) {
+					delete user[0].password
 					user.url = ''
 					res.status(200).json({
 						message: "User details retrived",

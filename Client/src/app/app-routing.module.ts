@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: 'auth', loadChildren: () => import('./auth/auth.routing').then(m => m.AuthRoutingModule) },
 
   { path: ':user_name', pathMatch: 'full', loadChildren: () => import('./view-profile/view-profile-routing.module').then(m => m.ViewProfileRoutingModule) },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent }

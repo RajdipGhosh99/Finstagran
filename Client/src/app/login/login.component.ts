@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DbService } from '../General/db/db.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GoogleService } from '../sso/google.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   public passShow: boolean = false
 
 
-  constructor(private dbService: DbService, private fb: FormBuilder, private router: Router) {
+  constructor(private dbService: DbService, private fb: FormBuilder, private router: Router, private googleSsoService: GoogleService) {
 
     let user: any = localStorage.getItem('_user')
     if (user && JSON.parse(user).token) {
@@ -51,6 +52,12 @@ export class LoginComponent implements OnInit {
 
   passShowHide() {
     this.passShow = !this.passShow
+  }
+
+  googleSso() {
+    localStorage.clear()
+    let url = this.googleSsoService.getGoogleOAuthURL()
+    window.open(url, "_self")
   }
 
 }
